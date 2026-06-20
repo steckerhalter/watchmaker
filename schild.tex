@@ -1,0 +1,64 @@
+
+\documentclass[11pt]{article}
+\usepackage[a4paper,landscape,margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{calligra} % Elegant script font for a workshop vibe
+\usepackage{pgfornament} % Decorative frames
+\usepackage{tikz}
+\usepackage{xcolor}
+
+\definecolor{darkgold}{HTML}{8B7500}
+\definecolor{charcoal}{HTML}{222222}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{tikzpicture}[remember picture, overlay]
+    % Draw outer border
+    \draw[line width=2pt, color=darkgold] 
+        ([shift={(1cm,-1cm)}]current picture.north west) 
+        rectangle 
+        ([shift={(-1cm,1cm)}]current picture.south east);
+        
+    % Draw inner thinner border
+    \draw[line width=0.5pt, color=darkgold] 
+        ([shift={(1.2cm,-1.2cm)}]current picture.north west) 
+        rectangle 
+        ([shift={(-1.2cm,1.2cm)}]current picture.south east);
+
+    % Ornaments in corners
+    \node[anchor=north west, color=darkgold] at ([shift={(1.2cm,-1.2cm)}]current picture.north west) {\pgfornament[width=1.5cm]{61}};
+    \node[anchor=north east, color=darkgold] at ([shift={(-1.2cm,-1.2cm)}]current picture.north east) {\pgfornament[width=1.5cm,symmetry=v]{61}};
+    \node[anchor=south west, color=darkgold] at ([shift={(1.2cm,1.2cm)}]current picture.south west) {\pgfornament[width=1.5cm,symmetry=h]{61}};
+    \node[anchor=south east, color=darkgold] at ([shift={(-1.2cm,1.2cm)}]current picture.south east) {\pgfornament[width=1.5cm,symmetry=c]{61}};
+\end{tikzpicture}
+
+\vspace*{1.5cm}
+
+\begin{center}
+    \color{charcoal}
+    
+    % Main Title using Calligra font or classic elegant serif
+    {\Huge \bfseries \fontsize{45pt}{55pt}\selectfont Reto's Uhren-Atelier}
+    
+    \vspace{1.5cm}
+    
+    % Decorative line
+    \centerline{\color{darkgold}\pgfornament[width=6cm]{4}}
+    
+    \vspace{1.5cm}
+    
+    % Subtitle
+    {\Large \itshape \fontsize{24pt}{30pt}\selectfont Reparaturen, Batteriewechsel}
+    
+    \vspace{3.0cm}
+    
+    % Bottom highlight
+    {\Huge \bfseries \color{darkgold} \fontsize{32pt}{40pt}\selectfont 2nd Hand Uhren} \\[0.5em]
+    {\Large \bfseries \fontsize{20pt}{26pt}\selectfont geprüft \& einsatzbereit}
+    
+\end{center}
+
+\end{document}
