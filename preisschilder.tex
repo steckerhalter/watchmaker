@@ -1,64 +1,66 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[german]{babel}
-\usepackage[margin=1.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[margin=10mm]{geometry}
 \usepackage{tikz}
-\usepackage{multicol}
+\usepackage{helvet}
 
-% Definition der Schilder-Box (Visitenkarten-Grösse: 85mm x 55mm)
-\newcommand{\uhrschild}[3]{%
-    \begin{tikzpicture}
-        % Schneidelinie / Rahmen
-        \draw[thick, dashed, gray] (0,0) rectangle (8.5,5.5);
+% Setzt die serifenlose Schriftart (Helvetica-Klon) als Standard für das Dokument
+\renewcommand{\familydefault}{\sfdefault}
+
+\pagestyle{empty}
+
+% Makro für die Erstellung eines einzelnen Uhren-Schildes
+\newcommand{\uhrschild}[5]{%
+    \begin{tikzpicture}[baseline=(current bounding box.center)]
+        % Gestrichelte Außenlinie als Schneidehilfe
+        \draw[dashed, line width=0.5pt, gray] (0,0) rectangle (8.5,5.2);
+        % Innerer, dicker Rahmen für die edle Optik
+        \draw[line width=1.2pt, black] (0.2,0.2) rectangle (8.3,5.0);
         
-        % Innerer dekorativer Rahmen für edlen Look
-        \draw[thin, black] (0.2,0.2) rectangle (8.3,5.3);
+        % Kopfzeile mit Marke / Modell
+        \node[anchor=north west, font=\bfseries\large, text width=7.5cm] at (0.4,4.8) {#1};
+        \draw[line width=0.8pt, black] (0.4,4.2) -- (8.1,4.2);
         
-        % Uhrenname / Marke
-        \node[text width=7.5cm, align=center] at (4.25,4.3) {
-            \fontsize{16}{18}\selectfont\textbf{#1}
+        % Uhren-Details
+        \node[anchor=north west, font=\small, text width=7.5cm] at (0.4,4.0) {
+            \textbf{Typ:} #2 \\
+            \textbf{Baujahr:} #3 \\
+            \textbf{Besonderheiten:} #4
         };
         
-        % Trennlinie
-        \draw[thin, gray] (1,3.2) -- (7.5,3.2);
+        % Gepunktete Trennlinie über dem Preis
+        \draw[dotted, line width=0.5pt, gray] (0.4,1.5) -- (8.1,1.5);
         
-        % Zusatzinfo (z.B. Herkunft, Werk, Zustand)
-        \node[text width=7.5cm, align=center, text=black!70] at (4.25,2.5) {
-            \fontfamily{cmss}\selectfont\large #2
-        };
-        
-        % Preis-Tag
-        \node[draw, thick, rounded corners=3pt, fill=black!5, inner sep=6pt] at (4.25,1.0) {
-            \fontsize{20}{22}\selectfont\textbf{CHF #3}
-        };
-    \end{tikzpicture}
-    \vspace{0.4cm}
+        % Preis-Anzeige unten rechts
+        \node[anchor=south east, font=\bfseries\LARGE] at (8.1,0.4) {CHF #5.-};
+        % Kleiner Qualitätsstempel unten links
+        \node[anchor=south west, font=\itshape\tiny, gray] at (0.4,0.4) {Geprüfte Qualität};
+    \end{tikzpicture}%
 }
 
 \begin{document}
-\pagestyle{empty}
 
-\begin{center}
-    \fontsize{24}{28}\selectfont\textbf{Retos Uhren-Bauchladen} \\[0.2cm]
-    \large Exklusive Sammlerstücke \& Vintage-Klassiker \\
-    \vspace{0.8cm}
-\end{center}
+% Seite 1: Die ersten 8 Uhren im 2x4 Raster
+\noindent
+\begin{tabular}{cc}
+\uhrschild{Vostok (Boctok) UdSSR}{Mechanisch (Handaufzug)}{ca. 1980er Jahre}{Kult-Klassiker aus der Sowjetunion. Robustes Militärwerk, 17 Steine.}{55} &
+\uhrschild{Grovana Swiss Made}{Mechanisch (Handaufzug)}{ca. 1990er Jahre}{Echte Schweizer Taschenuhr aus Tenniken (BL). Feines Werk mit 17 Jewels.}{75} \\[10pt]
+\uhrschild{Emporio Armani}{Quarz / Dress-Watch}{ca. 2000er Jahre}{Zeitloses Design im legendären ''Tank''-Stil. Römische Ziffern, edler Look.}{85} &
+\uhrschild{Daniel Wellington (DW)}{Quarz / Fashion-Watch}{ca. 2010er Jahre}{Weltbekannte Lifestyle-Marke. Ultradünnes Gehäuse, kontrastreiches Band.}{45} \\[10pt]
+\uhrschild{COVER World SA}{Quarz (Swiss Made)}{ca. 2000--2010}{Schweizer Qualitätsuhr aus Solothurn. Kissenform, neues Hirsch-Lederband.}{65} &
+\uhrschild{WMC ''Art Edition''}{Quarz / Designuhr}{ca. 2000er Jahre}{Exklusives Kunst-Zifferblatt. Toller Blickfang im Swatch-Stil (Modell 8966).}{25} \\[10pt]
+\uhrschild{Exergetic Sport}{Quarz / Diver-Stil}{ca. 2000er Jahre}{Robuste Sportuhr mit drehbarer Lünette und markanten Leuchtziffern.}{29} &
+\uhrschild{GUESS Fashion-Watch}{Quarz / Damenuhr}{ca. 2010er Jahre}{Edler ''Bling-Bling''-Style mit goldenem Paisley-Muster und Strass-Lünette.}{35} \\[10pt]
+\end{tabular}
 
-\begin{multicols}{2}
-    \raggedcolumns
-    
-    % --- SCHILD 1: Russische Vostok ---
-    \uhrschild{VOSTOK}{Handaufzug $\cdot$ Vintage Taschenuhr\\Original UdSSR ($\sim$1980er)}{55.--}
-    
-    % --- SCHILD 2: Swatch Scuba ---
-    \uhrschild{SWATCH Irony}{Scuba 200 $\cdot$ Aluminium-Gehäuse\\Klassiker mit Flex-Band $\cdot$ Swiss Made}{35.--}
-    
-    % --- SCHILD 3: Alfex Swiss ---
-    \uhrschild{ALFEX Swiss}{Klassischer Field-Watch-Stil\\Datumsanzeige $\cdot$ Swiss Made}{45.--}
-    
-    % --- SCHILD 4: Platzhalter für zukünftige Uhren ---
-    \uhrschild{UHREN-KLASSIKER}{Geprüftes Quarzwerk\\Frische Batterie $\cdot$ Top Zustand}{25.--}
+\newpage
 
-\end{multicols}
+% Seite 2: Die restlichen 2 Uhren
+\noindent
+\begin{tabular}{cc}
+\uhrschild{LK Gold Edition}{Quarz / Modesuhr}{ca. 2000er Jahre}{Klassische Dress-Watch in Gold-Optik mit kleiner Sekunde. Schickes Design.}{19} &
+\uhrschild{Minimalist Watch}{Quarz / No-Name}{ca. 2015--2020}{Sehr elegantes, cleanes Zifferblatt in Roségold/Schwarz ohne Ablenkung.}{15} \\
+\end{tabular}
 
 \end{document}

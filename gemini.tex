@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,landscape,margin=1.5cm]{geometry} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{calligra} 
+\usepackage{fix-cm}
+\usepackage{pgfornament} 
+\usepackage{xcolor}
+
+\definecolor{darkgold}{HTML}{222222}
+\definecolor{charcoal}{HTML}{222222}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% SAUBERER EINFACHER RAHMEN, DER DIE ECKEN UMSCHLIESST
+\begin{picture}(0,0)
+    % 1. Der umschliessende Rahmen (4 einfache Linien im Hintergrund)
+    % Horizontale Linien (Oben und Unten von ganz links nach ganz rechts)
+    \put(-40,30){\line(1,0){805}}
+    \put(-40,-520){\line(1,0){805}}
+    
+    % Vertikale Linien (Links und Rechts)
+    \put(-40,-490){\line(0,1){550}}
+    \put(765,-520){\line(0,1){550}}
+
+    % 2. Die 4 Ecken (sitzen nun exakt geschützt INNERHALB des Rahmens)
+    \put(-40,10){\pgfornament[width=1.5cm]{61}}
+    \put(720,10){\pgfornament[width=1.5cm,symmetry=v]{61}}
+    \put(-40,-500){\pgfornament[width=1.5cm,symmetry=h]{61}}
+    \put(720,-500){\pgfornament[width=1.5cm,symmetry=c]{61}}
+\end{picture}
+
+\begin{center}
+    \color{charcoal}
+    
+    \vspace*{0.5cm}
+    
+    % Main Title
+    {\calligra \fontsize{90pt}{100pt}\selectfont Retos\hspace{-0.5em} Uhren-Atelier}
+
+    \vspace{1.5em}
+    
+    % Subtitle
+    {\fontsize{30pt}{36pt}\selectfont Reparaturen, Batteriewechsel}
+    
+    \vspace{0.8cm}
+    
+    % Decorative line
+    \centerline{\color{darkgold}\pgfornament[width=6cm]{4}}
+    
+    \vspace{1.5cm}
+    
+    % Bottom highlight
+    {\bfseries \color{darkgold} \fontsize{60pt}{72pt}\selectfont Secondhand-Uhren} \\[0.5em]
+    {\fontsize{40pt}{48pt}\selectfont geprüft \& einsatzbereit}
+    
+\end{center}
+\end{document}
